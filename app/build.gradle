@@ -34,4 +34,5 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 
     compile 'com.github.open-android:RetrofitUtils:0.1.9'
+    compile 'com.github.open-android:LoopViewPager:2.0.0'
 }

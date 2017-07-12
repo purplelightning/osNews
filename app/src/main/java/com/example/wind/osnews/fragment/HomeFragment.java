@@ -40,7 +40,6 @@ public class HomeFragment extends Fragment{
         TabLayout tabs= (TabLayout) view.findViewById(R.id.tabs);
         ViewPager vp= (ViewPager) view.findViewById(R.id.viewPager);
 
-
         initData();
 
         mAdapter=new FragAdapter(getFragmentManager(),mFragmentList);
