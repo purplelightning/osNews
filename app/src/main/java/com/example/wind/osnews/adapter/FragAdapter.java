@@ -34,4 +34,12 @@ public class FragAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return mFragments.size();
     }
+
+    //重写标题
+
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titleList.get(position);
+    }
 }
