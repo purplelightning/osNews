@@ -81,6 +81,8 @@ public class NewsFragment extends Fragment {
         Call call = ItheimaHttp.send(request, new HttpResponseListener<BannerBean>() {
             @Override
             public void onResponse(BannerBean bannerBean, Headers headers) {
+                imageLists.clear();
+                textLists.clear();
                 List<BannerBean.ResultBean.ItemsBean> itemDatas=bannerBean.getItemDatas();
                 for(int i=0;i<itemDatas.size();i++){
                     imageLists.add(itemDatas.get(i).getImg());
@@ -93,6 +95,13 @@ public class NewsFragment extends Fragment {
             }
         });
     }
+
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        imageLists.clear();
+//        textLists.clear();
+//    }
 
     private void initData() {
         pullToLoadMoreRecyclerView = new PullToLoadMoreRecyclerView<NewsBean>
