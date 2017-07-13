@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/item_blog_about_bg_selector"
+    android:orientation="vertical"
+    android:paddingLeft="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/iv_avatar"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@mipmap/wuyanzu"
+            app:civ_border_color="#FFb0b0b0"
+            app:civ_border_width="2dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="帅达"
+                android:textColor="#111111"
+                android:textSize="14sp"/>
+
+            <TextView
+                android:id="@+id/tv_pub_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1楼 10分钟前"
+                android:textColor="#6a6a6a"
+                android:textSize="12sp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/btn_comment"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginRight="10dp"
+            android:contentDescription="开源中国"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_comment"/>
+
+        <ImageView
+            android:id="@+id/iv_best_answer"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginRight="10dp"
+            android:contentDescription="开源中国"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/label_best_answer"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay_refer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.example.wind.osnews.widget.FloorView
+            android:id="@+id/ly_refers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="vertical"
+            android:visibility="visible"/>
+
+        <com.example.wind.osnews.widget.TweetTextView
+            android:id="@+id/tv_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="8dp"
+            android:paddingRight="16dp"
+            android:text="哎呦,不错哟"
+            android:textColor="#111111"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#9f9f9f"/>
+
+</LinearLayout>
