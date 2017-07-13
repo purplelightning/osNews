@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:text="这是标题"
+            android:text="你看到这个原因时开源中国资讯页面放进了其他类型内容,新闻的api无法传递.."
             android:textColor="#000"
             android:textSize="18sp"/>
 

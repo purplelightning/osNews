@@ -137,7 +137,9 @@ public class NewsFragment extends Fragment {
 //                Toast.makeText(recyclerView.getContext(), "The title of the item clicked is "
 //                                +itemsBeen.get(position).getTitle(),
 //                        Toast.LENGTH_SHORT).show();
+                int id=itemsBeen.get(position).getId();
                 Intent intent=new Intent(getContext(), DetailActivity.class);
+                intent.putExtra("id",id);
                 startActivity(intent);
             }
         });
