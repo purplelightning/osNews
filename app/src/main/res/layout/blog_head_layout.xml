@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/brg_tabs"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:padding="8dp">
+
+    <RadioButton
+        android:id="@+id/new_recom_blog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rgbtn_bg_selector"
+        android:button="@null"
+        android:checked="true"
+        android:padding="5dp"
+        android:text="最新推荐"
+        android:textColor="@color/tab_text_color_selector"/>
+
+    <RadioButton
+        android:id="@+id/hot_blog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/rgbtn_bg_selector"
+        android:button="@null"
+        android:padding="5dp"
+        android:text="本周热门"
+        android:textColor="@color/tab_text_color_selector"/>
+
+    <RadioButton
+        android:id="@+id/new_blog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rgbtn_bg_selector"
+        android:button="@null"
+        android:padding="5dp"
+        android:text="最新博客"
+        android:textColor="@color/tab_text_color_selector"/>
+
+</RadioGroup>
