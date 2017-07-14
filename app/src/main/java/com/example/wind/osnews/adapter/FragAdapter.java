@@ -16,13 +16,11 @@ public class FragAdapter extends FragmentPagerAdapter {
     private List<Fragment> mFragments;
     private List<String> titleList=new ArrayList<>();
 
-    public FragAdapter(FragmentManager fm,List<Fragment> fragments){
+    public FragAdapter(FragmentManager fm,List<Fragment> fragments,List<String> titlelist){
         super(fm);
         mFragments=fragments;
+        titleList=titlelist;
 
-        titleList.add("资讯");
-        titleList.add("博客");
-        titleList.add("问答");
     }
 
     @Override

@@ -30,6 +30,7 @@ public class HomeFragment extends Fragment{
 
     private List<Fragment> mFragmentList;
     private FragAdapter mAdapter;
+    private List<String> titleList=new ArrayList<>();
 
 
     @Nullable
@@ -42,7 +43,7 @@ public class HomeFragment extends Fragment{
 
         initData();
 
-        mAdapter=new FragAdapter(getFragmentManager(),mFragmentList);
+        mAdapter=new FragAdapter(getFragmentManager(),mFragmentList,titleList);
         vp.setAdapter(mAdapter);
         //将tab与viewpager绑定起来
         tabs.setupWithViewPager(vp);
@@ -55,6 +56,11 @@ public class HomeFragment extends Fragment{
         mFragmentList.add(new NewsFragment());
         mFragmentList.add(new BlogFragment());
         mFragmentList.add(new QuestionFragment());
+
+
+        titleList.add("资讯");
+        titleList.add("博客");
+        titleList.add("问答");
     }
 
 }
