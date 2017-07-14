@@ -17,11 +17,7 @@ import android.widget.Toast;
 
 import com.example.wind.osnews.R;
 import com.example.wind.osnews.adapter.FragAdapter;
-import com.github.florent37.materialviewpager.MaterialViewPager;
-import com.github.florent37.materialviewpager.header.HeaderDesign;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by wind on 17-7-12.

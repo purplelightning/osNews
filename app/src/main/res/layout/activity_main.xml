@@ -1,16 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        >
+
+    </android.support.v7.widget.Toolbar>
 
     <RadioGroup
         android:id="@+id/rg_tabs"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:background="#F6F6F6"
+        android:background="#59f389"
         android:orientation="horizontal">
 
         <RadioButton
@@ -45,7 +57,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@mipmap/bg_login"
+            android:drawableTop="@drawable/ic_add"
             android:gravity="center"/>
 
         <RadioButton
@@ -75,6 +87,7 @@
 
     <RelativeLayout
         android:id="@+id/container"
+        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/rg_tabs">

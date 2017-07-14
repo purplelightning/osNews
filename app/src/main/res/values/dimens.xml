@@ -1,4 +1,6 @@
 <resources>
     <dimen name="cardMarginHorizontal">10dp</dimen>
     <dimen name="cardMarginVertical">8dp</dimen>
+
+    <dimen name="tool_bar_top_padding">0dp</dimen>
 </resources>
