@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +32,7 @@ public class HomeFragment extends Fragment{
 
     private List<Fragment> mFragmentList;
     private FragAdapter mAdapter;
-    private List<String> titleList=new ArrayList<>();
+    private List<String> titleListnews=new ArrayList<>();
 
 
     @Nullable
@@ -43,7 +45,7 @@ public class HomeFragment extends Fragment{
 
         initData();
 
-        mAdapter=new FragAdapter(getFragmentManager(),mFragmentList,titleList);
+        mAdapter=new FragAdapter(getFragmentManager(),mFragmentList,titleListnews);
         vp.setAdapter(mAdapter);
         //将tab与viewpager绑定起来
         tabs.setupWithViewPager(vp);
@@ -58,9 +60,9 @@ public class HomeFragment extends Fragment{
         mFragmentList.add(new QuestionFragment());
 
 
-        titleList.add("资讯");
-        titleList.add("博客");
-        titleList.add("问答");
+        titleListnews.add("资讯");
+        titleListnews.add("博客");
+        titleListnews.add("问答");
     }
 
 }

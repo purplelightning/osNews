@@ -115,5 +115,11 @@ public class MainActivity extends AppCompatActivity {
                 .hide(f4)
                 .commit();
     }
+
+//    @Override
+//    protected void onPostCreate(Bundle savedInstanceState) {
+//        super.onPostCreate(savedInstanceState);
+//        mDrawerToggle.syncState();
+//    }
 }
 

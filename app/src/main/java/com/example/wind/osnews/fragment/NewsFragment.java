@@ -147,8 +147,8 @@ public class NewsFragment extends Fragment {
         //开始请求
         pullToLoadMoreRecyclerView.requestData();
 
-        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
-                DividerItemDecoration.VERTICAL));
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
+//                DividerItemDecoration.VERTICAL));
 
         return view;
     }

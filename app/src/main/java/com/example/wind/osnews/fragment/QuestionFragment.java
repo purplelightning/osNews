@@ -54,7 +54,7 @@ public class QuestionFragment extends Fragment {
         //开始请求
         pullToLoadMoreRecyclerView.requestData();
 
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+//        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
 
         return view;
     }
