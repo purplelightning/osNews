@@ -58,7 +58,7 @@ public class JuhenewsAdapter extends RecyclerView.Adapter<JuhenewsAdapter.JuView
         JuheBean.ResultBean.DataBean data=jList.get(position);
         holder.titleText.setText(data.getTitle());
         holder.sourceText.setText(data.getAuthor_name());
-        Glide.with(mContext).load(R.drawable.cat).into(holder.imageIcon);
+        Glide.with(mContext).load(data.getThumbnail_pic_s()).into(holder.imageIcon);
         holder.timeText.setText(data.getDate());
     }
 
