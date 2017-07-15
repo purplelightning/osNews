@@ -7,3 +7,5 @@ RetrofitUtils
 jsoup
 circleimageview
 butterknife
+materialdrawer
+glide
