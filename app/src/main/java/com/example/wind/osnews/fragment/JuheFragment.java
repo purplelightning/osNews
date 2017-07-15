@@ -51,9 +51,9 @@ public class JuheFragment extends Fragment {
 
     private void initFragment() {
         mFragmentList=new ArrayList<>();
-        mFragmentList.add(new DiscoverFragment());
-        mFragmentList.add(new DiscoverFragment());
-        mFragmentList.add(new DiscoverFragment());
+        mFragmentList.add(new JuheNewsFragment());
+        mFragmentList.add(new JuheNewsFragment());
+        mFragmentList.add(new JuheNewsFragment());
         titleList.add("头条");
         titleList.add("笑话");
         titleList.add("图片");
