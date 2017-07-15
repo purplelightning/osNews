@@ -75,6 +75,10 @@ public class NewsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        ItheimaHttp.setHttpCache(false);
+        ItheimaHttp.init(getContext(),"http://www.oschina.net/");
+
+
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);

@@ -35,19 +35,19 @@
             android:checked="true"
             android:drawableTop="@drawable/tab_home_bg"
             android:gravity="center"
-            android:text="主页"
+            android:text="开源中国"
             android:textColor="@color/tab_text_color_selector"/>
 
         <RadioButton
-            android:id="@+id/tweet"
+            android:id="@+id/picture"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:button="@null"
-            android:drawableTop="@drawable/tab_tweet_bg"
+            android:drawableTop="@drawable/tab_picture_bg"
             android:gravity="center"
-            android:text="动弹"
+            android:text="聚合数据"
             android:textColor="@color/tab_text_color_selector"/>
 
         <RadioButton

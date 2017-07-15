@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.example.wind.osnews.R;
 import com.example.wind.osnews.adapter.FragAdapter;
+import com.itheima.retrofitutils.ItheimaHttp;
 
 import java.util.ArrayList;
 import java.util.List;

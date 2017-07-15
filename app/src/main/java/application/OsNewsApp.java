@@ -14,5 +14,7 @@ public class OsNewsApp extends Application {
     public void onCreate() {
         super.onCreate();
         ItheimaHttp.init(this,"http://www.oschina.net/");
+//        ItheimaHttp.init(this,"http://api.laifudao.com/");
+//        ItheimaHttp.init(this,"http://v.juhe.cn/");
     }
 }

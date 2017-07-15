@@ -15,7 +15,7 @@ import android.widget.Toast;
 import com.example.wind.osnews.fragment.DiscoverFragment;
 import com.example.wind.osnews.fragment.HomeFragment;
 import com.example.wind.osnews.fragment.MineFragment;
-import com.example.wind.osnews.fragment.TweetFragment;
+import com.example.wind.osnews.fragment.JuheFragment;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
@@ -29,7 +29,6 @@ import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 //fragmentTransaction变量定义为全局变量，导致只能commit一次，所以只要将FragmentTransaction变量定义为局部变量即可。
 
@@ -37,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.home)
     RadioButton home;
-    @BindView(R.id.tweet)
-    RadioButton tweet;
+    @BindView(R.id.picture)
+    RadioButton picture;
     @BindView(R.id.discover)
     RadioButton discover;
     @BindView(R.id.mine)
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.home:
                         ft.show(f1).hide(f2).hide(f3).hide(f4).commit();
                         break;
-                    case R.id.tweet:
+                    case R.id.picture:
                         ft.show(f2).hide(f1).hide(f3).hide(f4).commit();
                         break;
                     case R.id.discover:
@@ -97,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
         final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Home");
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Free Play");
         SecondaryDrawerItem item3=new SecondaryDrawerItem().withIdentifier(3).withName("Custom");
-        SecondaryDrawerItem item4=new SecondaryDrawerItem().withIdentifier(3).withName("Settings");
-
+        SecondaryDrawerItem item4=new SecondaryDrawerItem().withIdentifier(4).withName("Settings");
+        SecondaryDrawerItem item5=new SecondaryDrawerItem().withIdentifier(5).withName("About");
 //        MakeCircle.getCircleBitmap(
 
         AccountHeader headerResult = new AccountHeaderBuilder()
@@ -106,18 +105,20 @@ public class MainActivity extends AppCompatActivity {
                 .withHeaderBackground(R.drawable.abg)
                 .addProfiles(
                         new ProfileDrawerItem().withName("Song Da").withEmail("youysong@gmail.com")
-                                .withIcon(getResources().getDrawable(R.drawable.meizi))
-                )
+                                .withIcon(getResources().getDrawable(R.drawable.meizi)))
                 .withOnAccountHeaderListener(new AccountHeader.OnAccountHeaderListener() {
                     @Override
                     public boolean onProfileChanged(View view, IProfile profile, boolean currentProfile) {
                         return true;
                     }
                 })
+                .addProfiles(new ProfileDrawerItem().withIcon(getResources().getDrawable(R.drawable.cat)))
+                .addProfiles(new ProfileDrawerItem().withIcon(getResources().getDrawable(R.drawable.he)))
                 .withSelectionListEnabledForSingleProfile(false)
+                .withThreeSmallProfileImages(true)
                 .build();
-
-
+//        headerResult.getHeaderBackgroundView().setAdjustViewBounds(true);
+//        headerResult.getView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
 //    //create the drawer and remember the `Drawer` result object
         final Drawer result = new DrawerBuilder()
                 .withActivity(this)
@@ -129,7 +130,9 @@ public class MainActivity extends AppCompatActivity {
                         new DividerDrawerItem(),
                         item3,
                         new DividerDrawerItem(),
-                        item4
+                        item4,
+                        new DividerDrawerItem(),
+                        item5
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
@@ -139,16 +142,19 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 })
+                .withSliderBackgroundColor(0xaa433053)
                 .withAccountHeader(headerResult)
                 .build();
 
 //        result.openDrawer();
 //        result.closeDrawer();
         result.addItem(new DividerDrawerItem());
-        result.addStickyFooterItem(new PrimaryDrawerItem().withName("StickyFooterItem"));
+//        result.addStickyFooterItem(new PrimaryDrawerItem().withName("StickyFooterItem"));
 
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(false);
 
-        result.getDrawerLayout();
+//        result.getDrawerLayout().setBackgroundColor(0xaa433053);
     }
 
     private void changeImageSize() {
@@ -157,9 +163,9 @@ public class MainActivity extends AppCompatActivity {
         drawableHome.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
         home.setCompoundDrawables(null, drawableHome, null, null);//只放上面
 
-        Drawable drawableTweet = getResources().getDrawable(R.drawable.tab_tweet_bg);
+        Drawable drawableTweet = getResources().getDrawable(R.drawable.tab_picture_bg);
         drawableTweet.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
-        tweet.setCompoundDrawables(null, drawableTweet, null, null);//只放上面
+        picture.setCompoundDrawables(null, drawableTweet, null, null);//只放上面
 
         Drawable drawableDiscover = getResources().getDrawable(R.drawable.tab_discover_bg);
         drawableDiscover.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
@@ -176,12 +182,12 @@ public class MainActivity extends AppCompatActivity {
 
     private void initFragment() {
         f1 = new HomeFragment();
-        f2 = new TweetFragment();
+        f2 = new JuheFragment();
         f3 = new DiscoverFragment();
         f4 = new MineFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container, f1, "home")
-                .add(R.id.container, f2, "tweet")
+                .add(R.id.container, f2, "picture")
                 .add(R.id.container, f3, "discover")
                 .add(R.id.container, f4, "mine")
                 .commit();
