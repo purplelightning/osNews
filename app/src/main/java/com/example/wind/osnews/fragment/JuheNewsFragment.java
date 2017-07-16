@@ -1,5 +1,7 @@
 package com.example.wind.osnews.fragment;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,7 +41,7 @@ public class JuheNewsFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_juhenews, container, false);
 
         RecyclerView recyclerView= (RecyclerView) view.findViewById(R.id.jrecycler_view);
@@ -50,6 +53,17 @@ public class JuheNewsFragment extends Fragment {
         recyclerView.setAdapter(mAdapter);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        mAdapter.setOnItemClickListener(new JuhenewsAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+//                Toast.makeText(getContext(),"aaaa",Toast.LENGTH_SHORT).show();
+                String url=jBeanList.get(position).getUrl();
+                Intent intent=new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(url));
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

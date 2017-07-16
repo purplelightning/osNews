@@ -23,6 +23,19 @@ public class JuhenewsAdapter extends RecyclerView.Adapter<JuhenewsAdapter.JuView
     private List<JuheBean.ResultBean.DataBean> jList;
     private Context mContext;
 
+    /*
+        监听器初始化
+    */
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
+
+    private OnItemClickListener mListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
+
     public JuhenewsAdapter(Context context,List<JuheBean.ResultBean.DataBean> list){
         mContext=context;
         jList=list;
@@ -54,12 +67,22 @@ public class JuhenewsAdapter extends RecyclerView.Adapter<JuhenewsAdapter.JuView
     }
 
     @Override
-    public void onBindViewHolder(JuViewHolder holder, int position) {
+    public void onBindViewHolder(final JuViewHolder holder, final int position) {
         JuheBean.ResultBean.DataBean data=jList.get(position);
         holder.titleText.setText(data.getTitle());
         holder.sourceText.setText(data.getAuthor_name());
         Glide.with(mContext).load(data.getThumbnail_pic_s()).into(holder.imageIcon);
         holder.timeText.setText(data.getDate());
+
+        //监听器回调
+        if (mListener != null) {
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onItemClick(holder.itemView, position);
+                }
+            });
+        }
     }
 
     @Override
