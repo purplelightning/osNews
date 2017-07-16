@@ -71,6 +71,9 @@ public class JuheFragment extends Fragment {
 
         nt=new JuheNewsType(5,"来福笑话","http://api.laifudao.com/open/xiaohua.json");
         nt_list.add(nt);
+
+        nt=new JuheNewsType(6,"来福图片","http://api.laifudao.com/open/tupian.json");
+        nt_list.add(nt);
     }
 
     private void initFragment() {
@@ -89,11 +92,18 @@ public class JuheFragment extends Fragment {
         f.setArguments(b);
         mFragmentList.add(f);
 
+        Fragment g=new FunImageFragment();
+        Bundle b2=new Bundle();
+        b2.putSerializable("type",nt_list.get(5));
+        g.setArguments(b2);
+        mFragmentList.add(g);
+
         titleList.add("头条");
         titleList.add("国际");
         titleList.add("体育");
         titleList.add("科技");
         titleList.add("来福笑话");
+        titleList.add("来福图片");
     }
 
 }
