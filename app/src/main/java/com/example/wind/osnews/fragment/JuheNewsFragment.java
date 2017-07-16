@@ -57,7 +57,7 @@ public class JuheNewsFragment extends Fragment {
         mAdapter.setOnItemClickListener(new JuhenewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//                Toast.makeText(getContext(),"aaaa",Toast.LENGTH_SHORT).show();
+//              用浏览器打开对应item
                 String url=jBeanList.get(position).getUrl();
                 Intent intent=new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
