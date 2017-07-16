@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -85,6 +87,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.backup:
+                Toast.makeText(this,"You clicked Backup",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.settings:
+                Toast.makeText(this,"You clicked Settings",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
 
     private void initDrawer() {
 
@@ -100,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         SecondaryDrawerItem item5=new SecondaryDrawerItem().withIdentifier(5).withName("About");
 //        MakeCircle.getCircleBitmap(
 
-        AccountHeader headerResult = new AccountHeaderBuilder()
+        final AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
                 .withHeaderBackground(R.drawable.abg)
                 .addProfiles(
@@ -115,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 .addProfiles(new ProfileDrawerItem().withIcon(getResources().getDrawable(R.drawable.cat)))
                 .addProfiles(new ProfileDrawerItem().withIcon(getResources().getDrawable(R.drawable.he)))
                 .withSelectionListEnabledForSingleProfile(false)
-                .withThreeSmallProfileImages(true)
+//                .withThreeSmallProfileImages(true)
                 .build();
 //        headerResult.getHeaderBackgroundView().setAdjustViewBounds(true);
 //        headerResult.getView().setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
@@ -142,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 })
-                .withSliderBackgroundColor(0xaa433053)
+//                .withSliderBackgroundColor(0xaa433053)
                 .withAccountHeader(headerResult)
                 .build();
 

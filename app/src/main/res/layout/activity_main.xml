@@ -11,9 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        >
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
     </android.support.v7.widget.Toolbar>
 
@@ -87,9 +86,9 @@
 
     <RelativeLayout
         android:id="@+id/container"
-        android:layout_below="@id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/rg_tabs">
+        android:layout_above="@id/rg_tabs"
+        android:layout_below="@id/toolbar">
     </RelativeLayout>
 </RelativeLayout>
