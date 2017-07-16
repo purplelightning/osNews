@@ -20,6 +20,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.wind.osnews.Bean.JuheBean;
 import com.example.wind.osnews.Bean.JuheNewsType;
+import com.example.wind.osnews.JuheDetailActivity;
 import com.example.wind.osnews.R;
 import com.example.wind.osnews.adapter.JuhenewsAdapter;
 
@@ -57,11 +58,20 @@ public class JuheNewsFragment extends Fragment {
         mAdapter.setOnItemClickListener(new JuhenewsAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-//              用浏览器打开对应item
+//                用浏览器打开对应item
+//                String url=jBeanList.get(position).getUrl();
+//                Intent intent=new Intent(Intent.ACTION_VIEW);
+//                intent.setData(Uri.parse(url));
+//                startActivity(intent);
                 String url=jBeanList.get(position).getUrl();
-                Intent intent=new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(url));
+                String jimg=jBeanList.get(position).getThumbnail_pic_s();
+                String jtitle=jBeanList.get(position).getTitle();
+                Intent intent=new Intent(getContext(), JuheDetailActivity.class);
+                intent.putExtra("url",url);
+                intent.putExtra("jimg",jimg);
+                intent.putExtra("jtitle",jtitle);
                 startActivity(intent);
+
             }
         });
 
