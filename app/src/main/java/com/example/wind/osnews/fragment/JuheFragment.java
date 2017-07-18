@@ -114,8 +114,8 @@ public class JuheFragment extends Fragment {
         titleList.add("科技");
         titleList.add("娱乐");
         titleList.add("军事");
-        titleList.add("来福笑话");
-        titleList.add("来福图片");
+        titleList.add("笑话");
+        titleList.add("图片");
     }
 
 }

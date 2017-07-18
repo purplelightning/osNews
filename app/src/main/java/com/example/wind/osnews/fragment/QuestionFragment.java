@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,18 +16,27 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.wind.osnews.Bean.NewsBean;
 import com.example.wind.osnews.Bean.QuestionBean;
+import com.example.wind.osnews.DetailActivity;
+import com.example.wind.osnews.QuestionDetailActivity;
 import com.example.wind.osnews.R;
 import com.example.wind.osnews.Utils.StringUtils;
+import com.itheima.retrofitutils.L;
 
 import org.itheima.recycler.adapter.BaseLoadMoreRecyclerAdapter;
+import org.itheima.recycler.listener.ItemClickSupport;
 import org.itheima.recycler.viewholder.BaseRecyclerViewHolder;
 import org.itheima.recycler.widget.ItheimaRecyclerView;
 import org.itheima.recycler.widget.PullToLoadMoreRecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
+import okhttp3.Headers;
 
 /**
  * Created by wind on 17-7-12.
@@ -40,6 +50,11 @@ public class QuestionFragment extends Fragment {
     SwipeRefreshLayout mSwipeRefreshLayout;
     ItheimaRecyclerView mRecyclerView;
 
+    private QuestionBean mQuestionBean;
+
+    //存储要显示的item值,用于点击事件
+    List<QuestionBean.ResultBean.ItemsBean> itemsBeen = new ArrayList<>();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,11 +65,45 @@ public class QuestionFragment extends Fragment {
 
         initData();
 
+        ItemClickSupport itemClickSupport = new ItemClickSupport(mRecyclerView);
+        //点击事件
+        itemClickSupport.setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+            @Override
+            public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+//                Toast.makeText(recyclerView.getContext(), "The title of the item clicked is "
+//                                +itemsBeen.get(position).getTitle(),
+//                        Toast.LENGTH_SHORT).show();
+                int id=itemsBeen.get(position).getId();
+                Intent intent=new Intent(getContext(), QuestionDetailActivity.class);
+                intent.putExtra("id",id);
+                startActivity(intent);
+            }
+        });
 
         //开始请求
         pullToLoadMoreRecyclerView.requestData();
 
 //        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
+
+        //设置监听
+        pullToLoadMoreRecyclerView.setLoadingDataListener(new PullToLoadMoreRecyclerView.
+                LoadingDataListener<QuestionBean>() {
+
+
+            @Override
+            public void onSuccess(QuestionBean questionBean, Headers headers) {
+                //监听http请求成功，如果不需要监听可以不重新该方法
+                L.i("setLoadingDataListener onSuccess: " + questionBean);
+
+                mQuestionBean = questionBean;
+
+                //当前的item值
+                List<QuestionBean.ResultBean.ItemsBean> itemDatas = questionBean.getItemDatas();
+                for (QuestionBean.ResultBean.ItemsBean itemData : itemDatas) {
+                    itemsBeen.add(itemData);
+                }
+            }
+        });
 
         return view;
     }

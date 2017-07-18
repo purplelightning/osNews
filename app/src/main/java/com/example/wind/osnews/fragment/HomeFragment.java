@@ -25,6 +25,7 @@ import java.util.List;
 //博客列表www.oschina.net/action/apiv2/banner?catalog=1
 //详情页面http://www.oschina.net/action/apiv2/news?id=77953
 //问答:http://www.oschina.net/action/apiv2/question
+//问答详情:http://www.oschina.net/action/apiv2/question?id=64993
 //评论http://www.oschina.net/action/apiv2/comment?parts=refer,reply&sourceId=77964&type=6
 //活动http://www.oschina.net/action/apiv2/event
 //登录http://www.oschina.net/action/api/login_validate

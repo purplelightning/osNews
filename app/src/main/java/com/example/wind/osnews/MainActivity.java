@@ -86,7 +86,7 @@ public class MainActivity extends BaseActivity {
                         ft.show(f4).hide(f2).hide(f3).hide(f1).commit();
                         break;
                     case R.id.login:
-                        Toast.makeText(MainActivity.this, "YYYY", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "在我的BGM里,没人能打败我!", Toast.LENGTH_SHORT).show();
                 }
             }
         });

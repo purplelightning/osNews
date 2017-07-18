@@ -12,7 +12,7 @@
         app:tabMinWidth="100dp"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="#fff"/>
+        android:background="?attr/tab_background"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/jviewPager"

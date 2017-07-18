@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="你看到这个原因时开源中国资讯页面放进了其他类型内容,新闻的api无法传递.."
-            android:textColor="#000"
+            android:textColor="?attr/item_title_color"
             android:textSize="18sp"/>
 
         <TextView
@@ -28,7 +28,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="10dp"
             android:text="发表于一天前 (2017-7-9 20:20)"
-            android:textColor="#6a6a6a"
+            android:textColor="?attr/item_title_color"
             android:textSize="12sp"/>
 
         <WebView
