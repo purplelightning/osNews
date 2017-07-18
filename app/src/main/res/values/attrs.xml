@@ -3,4 +3,7 @@
     <attr name="app_background" format="reference|color" />
     <attr name="actionbar_background" format="reference|color"/>
     <attr name="tab_background" format="reference|color"/>
+    <attr name="item_title_color" format="reference|color"/>
+    <attr name="item_content_color" format="reference|color"/>
+    <attr name="item_background" format="reference|color"/>
 </resources>

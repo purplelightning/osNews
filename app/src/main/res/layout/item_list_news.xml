@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_margin="4dp"
     card_view:cardCornerRadius="2dp">
 
@@ -11,7 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="20dp"
+        android:background="?attr/item_background"
+        android:padding="10dp"
         android:orientation="vertical">
 
         <TextView
@@ -20,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Large Text"
-            android:textColor="#000"
+            android:textColor="?attr/item_title_color"
             android:textSize="16sp"/>
 
         <LinearLayout
@@ -34,6 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
+                android:textColor="?attr/item_content_color"
                 android:textSize="13sp"/>
 
         </LinearLayout>
@@ -48,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:text="2012-12-01 22:10"
-                android:textColor="#000"
+                android:textColor="?attr/item_content_color"
                 android:textSize="11sp"/>
 
             <TextView
@@ -57,7 +59,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="10dp"
-                android:text="12"/>
+                android:text="12"
+                android:textColor="?attr/item_content_color"/>
 
             <ImageView
                 android:id="@+id/iv_info_comment"

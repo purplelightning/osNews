@@ -55,12 +55,14 @@
         <item name="actionbar_background">@color/ActionBarColor</item>
         <item name="colorPrimaryDark">@color/PrimaryDark</item>
         <item name="tab_background">@color/TabNormal</item>
+        <item name="item_title_color">@color/TitleNormal</item>
+        <item name="item_content_color">@color/ContentNormal</item>
+        <item name="item_background">@color/ItemBackground</item>
 
         <item name="material_drawer_background">@color/material_drawer_background</item>
         <item name="material_drawer_primary_text">@color/material_drawer_primary_text</item>
         <item name="material_drawer_primary_icon">@color/material_drawer_primary_icon</item>
-        <item name="material_drawer_secondary_text">@color/material_drawer_secondary_text
-        </item>
+        <item name="material_drawer_secondary_text">@color/material_drawer_secondary_text</item>
         <item name="material_drawer_hint_text">@color/material_drawer_hint_text</item>
         <item name="material_drawer_divider">@color/material_drawer_divider</item>
         <item name="material_drawer_selected">@color/material_drawer_selected</item>
@@ -76,6 +78,9 @@
         <item name="actionbar_background">@color/ActionBarColor_night</item>
         <item name="colorPrimaryDark">@color/PrimaryDark_night</item>
         <item name="tab_background">@color/TabNormal_night</item>
+        <item name="item_title_color">@color/TitleNormal_night</item>
+        <item name="item_content_color">@color/ContentNormal_night</item>
+        <item name="item_background">@color/ItemBackground_night</item>
 
         <item name="material_drawer_background">@color/material_drawer_dark_background</item>
         <item name="material_drawer_primary_text">@color/material_drawer_dark_primary_text</item>
@@ -90,7 +95,6 @@
             @color/material_drawer_dark_header_selection_text
         </item>
     </style>
-
 
 
     <style name="JuheDetailActivityTheme" parent="AppTheme"></style>

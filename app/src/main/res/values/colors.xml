@@ -13,6 +13,15 @@
     <color name="TabNormal">#fff</color>
     <color name="TabNormal_night">#303030</color>
 
+    <color name="TitleNormal">#000</color>
+    <color name="TitleNormal_night">#fff</color>
+
+    <color name="ContentNormal">#6a6a6a</color>
+    <color name="ContentNormal_night">#fff</color>
+
+    <color name="ItemBackground">#fff</color>
+    <color name="ItemBackground_night">#aa000000</color>
+
 
     <color name="colorPrimary">#24cf5f</color>
     <color name="colorPrimaryDark">#40aa66</color>

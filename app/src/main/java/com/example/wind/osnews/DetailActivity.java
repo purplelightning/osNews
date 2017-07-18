@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import com.example.wind.osnews.widget.TweetTextView;
 import com.itheima.retrofitutils.ItheimaHttp;
 import com.itheima.retrofitutils.Request;
 import com.itheima.retrofitutils.listener.HttpResponseListener;
+import com.maning.themelibrary.SkinManager;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -101,6 +103,21 @@ public class DetailActivity extends BaseActivity {
                 wvNewDetailWeb.getSettings().setDefaultTextEncodingName("UTF-8");
                 wvNewDetailWeb.loadDataWithBaseURL(null, getNewContent(bean.getResult().getBody()),
                         "text/html", "charset=UTF-8", null);
+
+                //WebView夜间模式
+                wvNewDetailWeb.setWebViewClient(new WebViewClient() {
+
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        super.onPageFinished(view, url);
+                        //设置webView,这里是设置夜间模式的颜色
+                        String backgroudColor = "#232736";
+                        String fontColor = "#626f9b";
+                        String urlColor = "#9AACEC";
+                        SkinManager.setColorWebView(wvNewDetailWeb, backgroudColor, fontColor, urlColor);
+                    }
+
+                });
 
                 List<Detail.ResultBean.AboutsBean> abouts = bean.getResult().getAbouts();
                 for (int i = 0; i < abouts.size(); i++) {

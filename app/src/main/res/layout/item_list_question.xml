@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="?attr/item_background"
         android:orientation="vertical"
         android:padding="8dp">
 
@@ -39,7 +40,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="标题"
-                    android:textColor="#000"
+                    android:textColor="?attr/item_title_color"
                     android:textSize="15sp"/>
 
                 <TextView
@@ -51,6 +52,7 @@
                     android:ellipsize="end"
                     android:maxLines="2"
                     android:text="这是内容"
+                    android:textColor="?attr/item_content_color"
                     android:textSize="12sp"/>
 
                 <RelativeLayout
@@ -63,6 +65,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="十二月魔"
+                        android:textColor="?attr/item_title_color"
                         android:textSize="11sp"/>
 
                     <TextView
@@ -72,6 +75,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_toRightOf="@id/tv_author"
                         android:text="2009-12-12"
+                        android:textColor="?attr/item_title_color"
                         android:textSize="11sp"/>
 
                     <TextView
@@ -81,6 +85,7 @@
                         android:layout_alignParentRight="true"
                         android:layout_marginRight="5dp"
                         android:text="12"
+                        android:textColor="?attr/item_title_color"
                         android:textSize="11sp"/>
 
                     <ImageView
