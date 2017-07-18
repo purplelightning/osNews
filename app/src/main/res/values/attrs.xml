@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="app_background" format="reference|color" />
+    <attr name="actionbar_background" format="reference|color"/>
+    <attr name="tab_background" format="reference|color"/>
+</resources>

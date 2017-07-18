@@ -1,15 +1,18 @@
 package com.example.wind.osnews;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -18,23 +21,27 @@ import com.example.wind.osnews.fragment.DiscoverFragment;
 import com.example.wind.osnews.fragment.HomeFragment;
 import com.example.wind.osnews.fragment.MineFragment;
 import com.example.wind.osnews.fragment.JuheFragment;
+import com.maning.themelibrary.SkinManager;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.interfaces.OnCheckedChangeListener;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
 import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
 import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SwitchDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
+import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 //fragmentTransaction变量定义为全局变量，导致只能commit一次，所以只要将FragmentTransaction变量定义为局部变量即可。
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @BindView(R.id.home)
     RadioButton home;
@@ -89,18 +96,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.backup:
-                Toast.makeText(this,"You clicked Backup",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You clicked Backup", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.settings:
-                Toast.makeText(this,"You clicked Settings",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "You clicked Settings", Toast.LENGTH_SHORT).show();
                 break;
         }
         return true;
@@ -115,14 +122,14 @@ public class MainActivity extends AppCompatActivity {
         //if you want to update the items at a later time it is recommended to keep it in a variable
         final PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName("Home");
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Free Play");
-        SecondaryDrawerItem item3=new SecondaryDrawerItem().withIdentifier(3).withName("Custom");
-        SecondaryDrawerItem item4=new SecondaryDrawerItem().withIdentifier(4).withName("Settings");
-        SecondaryDrawerItem item5=new SecondaryDrawerItem().withIdentifier(5).withName("About");
-//        MakeCircle.getCircleBitmap(
+        SwitchDrawerItem item3 = new SwitchDrawerItem().withIdentifier(3).withName("Mode")
+                .withChecked(false).withOnCheckedChangeListener(checkedChangeListener);
+        SecondaryDrawerItem item4 = new SecondaryDrawerItem().withIdentifier(4).withName("Settings");
+        SecondaryDrawerItem item5 = new SecondaryDrawerItem().withIdentifier(5).withName("About");
 
         final AccountHeader headerResult = new AccountHeaderBuilder()
                 .withActivity(this)
-                .withHeaderBackground(R.drawable.abg)
+                .withHeaderBackground(R.drawable.sea2)
                 .addProfiles(
                         new ProfileDrawerItem().withName("Song Da").withEmail("youysong@gmail.com")
                                 .withIcon(getResources().getDrawable(R.drawable.meizi)))
@@ -158,14 +165,17 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
                         // do something with the clicked item :D
-                        Toast.makeText(MainActivity.this,"you clicked the item"+position,Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "you clicked the item" + position, Toast.LENGTH_SHORT).show();
                         return true;
                     }
                 })
 //                .withSliderBackgroundColor(0xaa433053)
                 .withAccountHeader(headerResult)
+                .withTranslucentStatusBar(false)
+                .withFullscreen(true)
                 .build();
 
+        result.setFullscreen(true);
 //        result.openDrawer();
 //        result.closeDrawer();
         result.addItem(new DividerDrawerItem());
@@ -217,6 +227,21 @@ public class MainActivity extends AppCompatActivity {
                 .hide(f4)
                 .commit();
     }
+
+    private OnCheckedChangeListener checkedChangeListener = new OnCheckedChangeListener() {
+        @Override
+        public void onCheckedChanged(IDrawerItem drawerItem, CompoundButton buttonView, boolean isChecked) {
+            //改变主题:自动根据当前主题改变白天和黑夜
+            SkinManager.changeSkin(MainActivity.this);
+            //改变主题:指定主题
+            //SkinManager.changeSkin(this,R.style.DayTheme);
+            //重启当前Activity
+            startActivity(new Intent(MainActivity.this, MainActivity.class));
+            //重要:做一个自定义动画,避免出现闪烁现象
+            overridePendingTransition(com.maning.themelibrary.R.anim.mn_theme_activity_enter, com.maning.themelibrary.R.anim.mn_theme_activity_exit);
+            finish();
+        }
+    };
 
 }
 

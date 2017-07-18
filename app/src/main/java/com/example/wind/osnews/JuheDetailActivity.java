@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class JuheDetailActivity extends AppCompatActivity {
+public class JuheDetailActivity extends BaseActivity {
 
 
     @BindView(R.id.juhenews_img)

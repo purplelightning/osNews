@@ -33,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import okhttp3.Headers;
 import retrofit2.Call;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends BaseActivity {
 
     @BindView(R.id.tv_new_detail_name)
     TextView tvNewDetailName;
