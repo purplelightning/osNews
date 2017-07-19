@@ -1,5 +1,6 @@
 package com.example.wind.osnews.fragment;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -16,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.wind.osnews.Bean.BannerBean;
 import com.example.wind.osnews.Bean.NewsBean;
 import com.example.wind.osnews.DetailActivity;
@@ -26,6 +28,9 @@ import com.itheima.retrofitutils.ItheimaHttp;
 import com.itheima.retrofitutils.L;
 import com.itheima.retrofitutils.Request;
 import com.itheima.retrofitutils.listener.HttpResponseListener;
+import com.zhouwei.mzbanner.MZBannerView;
+import com.zhouwei.mzbanner.holder.MZHolderCreator;
+import com.zhouwei.mzbanner.holder.MZViewHolder;
 
 import org.itheima.recycler.adapter.BaseLoadMoreRecyclerAdapter;
 import org.itheima.recycler.header.RecyclerViewHeader;
@@ -56,10 +61,11 @@ public class NewsFragment extends Fragment {
     PullToLoadMoreRecyclerView pullToLoadMoreRecyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private LoopViewPager loopViewPager;
-    List<String> imageLists = new ArrayList<String>();
-    List<String> textLists = new ArrayList<String>();
+    //    private LoopViewPager loopViewPager;
+    MZBannerView mMZBanner;
 
+//    List<String> imageLists = new ArrayList<String>();
+//    List<String> textLists = new ArrayList<String>();
 
     private int state = 0;
     //下拉刷新
@@ -72,12 +78,17 @@ public class NewsFragment extends Fragment {
     //存储要显示的item值,用于点击事件
     List<NewsBean.ResultBean.ItemsBean> itemsBeen = new ArrayList<>();
 
+    List<BannerBean.ResultBean.ItemsBean> bannerDatas;
+
+    public static NewsFragment newInstance() {
+        return new NewsFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         ItheimaHttp.setHttpCache(false);
-        ItheimaHttp.init(getContext(),"http://www.oschina.net/");
-
+        ItheimaHttp.init(getContext(), "http://www.oschina.net/");
 
         View view = inflater.inflate(R.layout.fragment_news, container, false);
 
@@ -87,12 +98,14 @@ public class NewsFragment extends Fragment {
         recyclerView = (ItheimaRecyclerView) view.findViewById(R.id.recycler_view);
         header.attachTo(recyclerView);
 
-        loopViewPager = (LoopViewPager) view.findViewById(R.id.lvp_pager);
+//        loopViewPager = (LoopViewPager) view.findViewById(R.id.lvp_pager);
+        mMZBanner = (MZBannerView) view.findViewById(R.id.banner);
 
         initData();
 
         initBanner();
-
+        //不显示指示器
+        mMZBanner.setIndicatorVisible(false);
         //设置监听
         pullToLoadMoreRecyclerView.setLoadingDataListener(new PullToLoadMoreRecyclerView.
                 LoadingDataListener<NewsBean>() {
@@ -103,7 +116,7 @@ public class NewsFragment extends Fragment {
                 L.i("setLoadingDataListener onRefresh");
 
                 state = STATE_REFRESH;
-                Toast.makeText(getContext(),"下拉刷新",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "下拉刷新", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -117,11 +130,11 @@ public class NewsFragment extends Fragment {
                 //监听http请求成功，如果不需要监听可以不重新该方法
                 L.i("setLoadingDataListener onSuccess: " + newsBean);
 
-                mNewsBean=newsBean;
+                mNewsBean = newsBean;
 
                 //当前的item值
-                List<NewsBean.ResultBean.ItemsBean> itemDatas=newsBean.getItemDatas();
-                for(NewsBean.ResultBean.ItemsBean itemData:itemDatas){
+                List<NewsBean.ResultBean.ItemsBean> itemDatas = newsBean.getItemDatas();
+                for (NewsBean.ResultBean.ItemsBean itemData : itemDatas) {
                     itemsBeen.add(itemData);
                 }
             }
@@ -138,21 +151,16 @@ public class NewsFragment extends Fragment {
         itemClickSupport.setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-//                Toast.makeText(recyclerView.getContext(), "The title of the item clicked is "
-//                                +itemsBeen.get(position).getTitle(),
-//                        Toast.LENGTH_SHORT).show();
-                int id=itemsBeen.get(position).getId();
-                Intent intent=new Intent(getContext(), DetailActivity.class);
-                intent.putExtra("id",id);
+
+                int id = itemsBeen.get(position).getId();
+                Intent intent = new Intent(getContext(), DetailActivity.class);
+                intent.putExtra("id", id);
                 startActivity(intent);
             }
         });
 
         //开始请求
         pullToLoadMoreRecyclerView.requestData();
-
-//        recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),
-//                DividerItemDecoration.VERTICAL));
 
         return view;
     }
@@ -162,21 +170,54 @@ public class NewsFragment extends Fragment {
         Call call = ItheimaHttp.send(request, new HttpResponseListener<BannerBean>() {
             @Override
             public void onResponse(BannerBean bannerBean, Headers headers) {
-                imageLists.clear();//初始化清空
+               /* imageLists.clear();//初始化清空
                 textLists.clear();
-                List<BannerBean.ResultBean.ItemsBean> itemDatas = bannerBean.getItemDatas();
                 for (int i = 0; i < itemDatas.size(); i++) {
                     imageLists.add(itemDatas.get(i).getImg());
                     textLists.add(itemDatas.get(i).getName());
                 }
+
                 loopViewPager.setImgData(imageLists);
                 loopViewPager.setTitleData(textLists);
-                loopViewPager.start();
+                loopViewPager.start();*/
+                bannerDatas = bannerBean.getItemDatas();
 
+                //banner数据要在获取数据中设置,在外面设置首次不能得到
+                // 设置banner数据
+                mMZBanner.setPages(bannerDatas, new MZHolderCreator<BannerViewHolder>() {
+                    @Override
+                    public BannerViewHolder createViewHolder() {
+                        return new BannerViewHolder();
+                    }
+                });
+                //开始轮播
+                mMZBanner.start();
             }
         });
+
+
     }
 
+    public static class BannerViewHolder implements MZViewHolder<BannerBean.ResultBean.ItemsBean> {
+        private ImageView mImageView;
+        TextView title;
+
+        @Override
+        public View createView(Context context) {
+            // 返回页面布局
+            View view = LayoutInflater.from(context).inflate(R.layout.banner_item, null);
+            mImageView = (ImageView) view.findViewById(R.id.banner_image);
+            title = (TextView) view.findViewById(R.id.banner_text);
+            return view;
+        }
+
+        @Override
+        public void onBind(Context context, int position, BannerBean.ResultBean.ItemsBean data) {
+            // 数据绑定
+            Glide.with(context).load(data.getImg()).into(mImageView);
+            title.setText(data.getName());
+        }
+    }
 
     private void initData() {
         pullToLoadMoreRecyclerView = new PullToLoadMoreRecyclerView<NewsBean>
@@ -211,7 +252,7 @@ public class NewsFragment extends Fragment {
 
                 state = STATE_MORE;
 
-                Toast.makeText(getContext(),"加载更多",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "加载更多", Toast.LENGTH_SHORT).show();
 
                 return true;
             }
@@ -261,4 +302,15 @@ public class NewsFragment extends Fragment {
 //        }
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMZBanner.pause();//暂停轮播
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMZBanner.start();//开始轮播
+    }
 }

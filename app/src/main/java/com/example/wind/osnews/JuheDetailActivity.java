@@ -96,9 +96,6 @@ public class JuheDetailActivity extends BaseActivity {
             }
 
 
-
-
-
             /*
                 Jsoup测试,关键是正确找到节点
             */
