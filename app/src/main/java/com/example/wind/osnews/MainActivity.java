@@ -13,8 +13,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.CompoundButton;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.wind.osnews.fragment.DiscoverFragment;
@@ -36,6 +34,10 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.mikepenz.materialdrawer.model.interfaces.Nameable;
 
+import com.roughike.bottombar.BottomBar;
+import com.roughike.bottombar.BottomBarTab;
+import com.roughike.bottombar.OnTabSelectListener;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -43,7 +45,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
 
-    @BindView(R.id.home)
+    /*@BindView(R.id.home)
     RadioButton home;
     @BindView(R.id.picture)
     RadioButton picture;
@@ -52,20 +54,27 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.mine)
     RadioButton mine;
     @BindView(R.id.login)
-    RadioButton login;
+    RadioButton login;*/
+    BottomBar bottomBar;
     private Fragment f1, f2, f3, f4;
+
+    private int robotCount=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+//        ButterKnife.bind(this);
+        bottomBar = (BottomBar) findViewById(R.id.bottomBar);
 
         initDrawer();
 
         initFragment();
 
-        RadioGroup rg = (RadioGroup) findViewById(R.id.rg_tabs);
+        initBottomBar();
+
+       /* RadioGroup rg = (RadioGroup) findViewById(R.id.rg_tabs);
+        //改变tab栏图片大小,用了bottombar,不用了
         changeImageSize();
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -87,6 +96,43 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.login:
                         Toast.makeText(MainActivity.this, "在我的BGM里,没人能打败我!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });*/
+
+
+    }
+
+    private void initBottomBar() {
+
+        final BottomBarTab robot = bottomBar.getTabWithId(R.id.tab_robot);
+        robot.setBadgeCount(1);
+
+        bottomBar.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelected(@IdRes int tabId) {
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+
+                switch (tabId) {
+                    case R.id.tab_home:
+                        ft.show(f1).hide(f2).hide(f3).hide(f4).commit();
+                        break;
+                    case R.id.tab_news:
+                        ft.show(f2).hide(f1).hide(f3).hide(f4).commit();
+                        break;
+                    case R.id.tab_discover:
+                        ft.show(f3).hide(f2).hide(f1).hide(f4).commit();
+                        break;
+                    case R.id.tab_mine:
+                        ft.show(f4).hide(f2).hide(f3).hide(f1).commit();
+                        break;
+                    case R.id.tab_robot:
+                        if(robotCount==0){
+                            Toast.makeText(MainActivity.this, "在我的BGM里,没人能打败我!", Toast.LENGTH_SHORT).show();
+                            robotCount++;
+                            robot.removeBadge();
+                        }
+                        break;
                 }
             }
         });
@@ -187,28 +233,28 @@ public class MainActivity extends BaseActivity {
 //        result.getDrawerLayout().setBackgroundColor(0xaa433053);
     }
 
-    private void changeImageSize() {
-        //定义底部标签图片大小
-        Drawable drawableHome = getResources().getDrawable(R.drawable.tab_home_bg);
-        drawableHome.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
-        home.setCompoundDrawables(null, drawableHome, null, null);//只放上面
-
-        Drawable drawableTweet = getResources().getDrawable(R.drawable.tab_picture_bg);
-        drawableTweet.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
-        picture.setCompoundDrawables(null, drawableTweet, null, null);//只放上面
-
-        Drawable drawableDiscover = getResources().getDrawable(R.drawable.tab_discover_bg);
-        drawableDiscover.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
-        discover.setCompoundDrawables(null, drawableDiscover, null, null);//只放上面
-
-        Drawable drawableMine = getResources().getDrawable(R.drawable.tab_mine_bg);
-        drawableMine.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
-        mine.setCompoundDrawables(null, drawableMine, null, null);//只放上面
-
-        Drawable drawableLogin = getResources().getDrawable(R.drawable.ic_add);
-        drawableLogin.setBounds(0, 8, 74, 84);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
-        login.setCompoundDrawables(null, drawableLogin, null, null);//只放上面
-    }
+//    private void changeImageSize() {
+//        //定义底部标签图片大小
+//        Drawable drawableHome = getResources().getDrawable(R.drawable.tab_home_bg);
+//        drawableHome.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+//        home.setCompoundDrawables(null, drawableHome, null, null);//只放上面
+//
+//        Drawable drawableTweet = getResources().getDrawable(R.drawable.tab_picture_bg);
+//        drawableTweet.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+//        picture.setCompoundDrawables(null, drawableTweet, null, null);//只放上面
+//
+//        Drawable drawableDiscover = getResources().getDrawable(R.drawable.tab_discover_bg);
+//        drawableDiscover.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+//        discover.setCompoundDrawables(null, drawableDiscover, null, null);//只放上面
+//
+//        Drawable drawableMine = getResources().getDrawable(R.drawable.tab_mine_bg);
+//        drawableMine.setBounds(0, 0, 45, 45);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+//        mine.setCompoundDrawables(null, drawableMine, null, null);//只放上面
+//
+//        Drawable drawableLogin = getResources().getDrawable(R.drawable.ic_add);
+//        drawableLogin.setBounds(0, 8, 74, 84);//第一0是距左右边距离，第二0是距上下边距离，第三69长度,第四宽度
+//        login.setCompoundDrawables(null, drawableLogin, null, null);//只放上面
+//    }
 
     private void initFragment() {
         f1 = new HomeFragment();

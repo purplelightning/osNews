@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        barColorWhenSelected="#eff4f1"
+        icon="@mipmap/ic_account_balance"
+        id="@+id/tab_home"
+        title="开源中国"/>
+    <tab
+        barColorWhenSelected="#efe748"
+        icon="@mipmap/ic_chrome_reader_mode"
+        id="@+id/tab_news"
+        title="聚合数据"/>
+    <tab
+        barColorWhenSelected="#aa0000"
+        icon="@mipmap/ic_face"
+        id="@+id/tab_robot"
+        title="机器人"/>
+    <tab
+        barColorWhenSelected="#99ce2f"
+        icon="@mipmap/ic_brightness_high"
+        id="@+id/tab_discover"
+        title="发现"/>
+    <tab
+        barColorWhenSelected="#aa00aa"
+        icon="@mipmap/ic_account_circle"
+        id="@+id/tab_mine"
+        title="我的"/>
+</tabs>

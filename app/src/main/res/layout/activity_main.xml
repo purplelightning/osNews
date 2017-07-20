@@ -3,9 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
-    android:background="?app_background"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="?app_background">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -17,79 +17,19 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <RadioGroup
-        android:id="@+id/rg_tabs"
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
-        android:background="?actionbar_background"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/home"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:button="@null"
-            android:checked="true"
-            android:drawableTop="@drawable/tab_home_bg"
-            android:gravity="center"
-            android:text="开源中国"
-            android:textColor="@color/tab_text_color_selector"/>
-
-        <RadioButton
-            android:id="@+id/picture"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/tab_picture_bg"
-            android:gravity="center"
-            android:text="聚合数据"
-            android:textColor="@color/tab_text_color_selector"/>
-
-        <RadioButton
-            android:id="@+id/login"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/ic_add"
-            android:gravity="center"/>
-
-        <RadioButton
-            android:id="@+id/discover"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/tab_discover_bg"
-            android:gravity="center"
-            android:text="发现"
-            android:textColor="@color/tab_text_color_selector"/>
-
-        <RadioButton
-            android:id="@+id/mine"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:button="@null"
-            android:drawableTop="@drawable/tab_mine_bg"
-            android:gravity="center"
-            android:text="我的"
-            android:textColor="@color/tab_text_color_selector"/>
-    </RadioGroup>
+        app:bb_activeTabColor="?attr/actionbar_background"
+        app:bb_tabXmlResource="@xml/bottombar_tabs"/>
 
     <RelativeLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/rg_tabs"
+        android:layout_above="@id/bottomBar"
         android:layout_below="@id/toolbar">
     </RelativeLayout>
 </RelativeLayout>
