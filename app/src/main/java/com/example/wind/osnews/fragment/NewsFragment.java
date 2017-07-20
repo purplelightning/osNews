@@ -23,7 +23,6 @@ import com.example.wind.osnews.Bean.NewsBean;
 import com.example.wind.osnews.DetailActivity;
 import com.example.wind.osnews.R;
 import com.example.wind.osnews.Utils.StringUtils;
-import com.itheima.loopviewpager.LoopViewPager;
 import com.itheima.retrofitutils.ItheimaHttp;
 import com.itheima.retrofitutils.L;
 import com.itheima.retrofitutils.Request;
@@ -48,7 +47,6 @@ import butterknife.internal.Utils;
 import okhttp3.Headers;
 import retrofit2.Call;
 
-import static android.R.attr.delay;
 
 /**
  * Created by wind on 17-7-12.
@@ -61,9 +59,8 @@ public class NewsFragment extends Fragment {
     PullToLoadMoreRecyclerView pullToLoadMoreRecyclerView;
     SwipeRefreshLayout mSwipeRefreshLayout;
 
-    //    private LoopViewPager loopViewPager;
     MZBannerView mMZBanner;
-
+//    private LoopViewPager loopViewPager;
 //    List<String> imageLists = new ArrayList<String>();
 //    List<String> textLists = new ArrayList<String>();
 
@@ -194,7 +191,6 @@ public class NewsFragment extends Fragment {
                 mMZBanner.start();
             }
         });
-
 
     }
 
