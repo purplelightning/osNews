@@ -19,6 +19,7 @@ import com.example.wind.osnews.fragment.DiscoverFragment;
 import com.example.wind.osnews.fragment.HomeFragment;
 import com.example.wind.osnews.fragment.MineFragment;
 import com.example.wind.osnews.fragment.JuheFragment;
+import com.example.wind.osnews.robot.RobotFragment;
 import com.maning.themelibrary.SkinManager;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
@@ -56,9 +57,9 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.login)
     RadioButton login;*/
     BottomBar bottomBar;
-    private Fragment f1, f2, f3, f4;
+    private Fragment f1, f2, f3, f4, f5;
 
-    private int robotCount=0;
+    private int robotCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,23 +116,24 @@ public class MainActivity extends BaseActivity {
 
                 switch (tabId) {
                     case R.id.tab_home:
-                        ft.show(f1).hide(f2).hide(f3).hide(f4).commit();
+                        ft.show(f1).hide(f2).hide(f3).hide(f4).hide(f5).commit();
                         break;
                     case R.id.tab_news:
-                        ft.show(f2).hide(f1).hide(f3).hide(f4).commit();
+                        ft.show(f2).hide(f1).hide(f3).hide(f4).hide(f5).commit();
                         break;
                     case R.id.tab_discover:
-                        ft.show(f3).hide(f2).hide(f1).hide(f4).commit();
+                        ft.show(f3).hide(f2).hide(f1).hide(f4).hide(f5).commit();
                         break;
                     case R.id.tab_mine:
-                        ft.show(f4).hide(f2).hide(f3).hide(f1).commit();
+                        ft.show(f4).hide(f2).hide(f3).hide(f1).hide(f5).commit();
                         break;
                     case R.id.tab_robot:
                         if(robotCount==0){
-                            Toast.makeText(MainActivity.this, "在我的BGM里,没人能打败我!", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(MainActivity.this, "在我的BGM里,没人能打败我!", Toast.LENGTH_SHORT).show();
                             robotCount++;
                             robot.removeBadge();
                         }
+                        ft.show(f5).hide(f2).hide(f3).hide(f1).hide(f4).commit();
                         break;
                 }
             }
@@ -261,16 +263,19 @@ public class MainActivity extends BaseActivity {
         f2 = new JuheFragment();
         f3 = new DiscoverFragment();
         f4 = new MineFragment();
+        f5 = new RobotFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.container, f1, "home")
                 .add(R.id.container, f2, "picture")
                 .add(R.id.container, f3, "discover")
                 .add(R.id.container, f4, "mine")
+                .add(R.id.container, f5, "robot")
                 .commit();
         getSupportFragmentManager().beginTransaction()
                 .hide(f2)
                 .hide(f3)
                 .hide(f4)
+                .hide(f5)
                 .commit();
     }
 
